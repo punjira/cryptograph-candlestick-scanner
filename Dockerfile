@@ -28,3 +28,9 @@ COPY --from=compile-image /opt/venv /opt/venv
 # Make sure we use the virtualenv:
 ENV PATH="/opt/venv/bin:$PATH"
 ENV LD_LIBRARY_PATH="/opt/venv/lib"
+
+COPY . .
+
+ENTRYPOINT [ "python" ]
+
+CMD [ "src/candlesticks.py" ]
