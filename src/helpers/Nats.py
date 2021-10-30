@@ -5,6 +5,8 @@ import json
 from nats.aio.client import Client as NATS
 from stan.aio.client import Client as STAN
 
+from logic import routine
+
 class NatsService:
     def __init__(self, nats_server_address, nats_server_channel):
         self.NATSERVER = nats_server_address
@@ -33,8 +35,8 @@ class NatsService:
                 data = msg.data.decode()
                 js = json.loads(data)
                 if 'ticker' in js:
-                    print(js['ticker'])
-                    # await self.sc.publish("TREND_EVENT", json.dumps(message).encode('utf-8'))
+                    res = routine(js['ticker'])
+                    await self.sc.publish("CANDLE_STICK_EVENT", json.dumps(res).encode('utf-8'))
             except Exception as e:
                 print("something went wrong ", e)
         print("subscribing to event message")
