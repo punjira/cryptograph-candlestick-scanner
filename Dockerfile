@@ -33,4 +33,4 @@ COPY . .
 
 ENTRYPOINT [ "python" ]
 
-CMD [ "src/candlesticks.py" ]
+CMD [ "src/server.py" ]
