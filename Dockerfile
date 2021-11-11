@@ -31,6 +31,8 @@ ENV LD_LIBRARY_PATH="/opt/venv/lib"
 
 COPY . .
 
+EXPOSE 5000
+
 ENTRYPOINT [ "python" ]
 
 CMD [ "src/server.py" ]
